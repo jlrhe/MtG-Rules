@@ -5,7 +5,7 @@ if (typeof process.argv[2] !== "undefined") {
   const readFile = (path) => {
     try {
       const text = fs.readFileSync(path, "utf8");
-      console.log(text);
+      return text;
     } catch (err) {
       console.error(err);
     }
