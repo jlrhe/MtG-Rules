@@ -1,15 +1,30 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import parser from "./parser/parser";
-import Section from "./components/section/section.component";
+import Chapter from "./components/chapter/chapter.component";
+import TableOfContents from "./components/table-of-contents/table-of-contents.component";
 
 const App = () => {
-  const [rules, setRules] = useState("loading rules...");
-  const [parsedRules, setParsedRules] = useState([]);
+  const [rules, setRules] = useState("Loading rules...");
+
+  const [selectedSection, setSelectedSection] = useState("1.");
+  const [selectedChapter, setSelectedChapter] = useState("100.");
+  const [selectedChapterData, setSelectedChapterData] = useState({
+    id: "100.",
+    rules: [{ id: "100.1.", rule: "Loading Rules..." }],
+  });
   //cors proxy is fine for fetching static data without credentials
   const [rulesUrl, setRulesUrl] = useState(
     "https://thingproxy.freeboard.io/fetch/https://media.wizards.com/2021/downloads/MagicCompRules%2020210419.txt"
   );
+  const [parsedRules, setParsedRules] = useState([
+    {
+      id: "1.",
+      chapters: [
+        { id: "100.", rules: [{ id: "100.1.", rule: "Loading Rules..." }] },
+      ],
+    },
+  ]);
   /* commented out to avoid fetch during development
   useEffect(() => {
     fetch(rulesUrl)
@@ -20,16 +35,30 @@ const App = () => {
         setRules(textString);
       });
   }, [rulesUrl]);
-*/
+ */
   useEffect(() => {
     setParsedRules(parser(rules));
   }, [rules]);
+  useEffect(() => {
+    setSelectedChapterData(
+      parsedRules
+        .find((section) => section.id === selectedSection)
+        .chapters.find((chapter) => chapter.id === selectedChapter)
+    );
+    console.log("setDisplayedRules: ", selectedChapterData);
+  }, [parsedRules, selectedChapter, selectedChapterData, selectedSection]);
   return (
     <div className="App">
       <header className="page-header">MtG Rules</header>
-      {parsedRules.map(({ id, title, chapters }) => (
-        <Section key={id} id={id} title={title} chapters={chapters} />
-      ))}
+      <div className="container">
+        <Chapter
+          key={selectedChapterData.id}
+          id={selectedChapterData.id}
+          title={selectedChapterData.title}
+          rules={selectedChapterData.rules}
+        />
+        <TableOfContents parsedRules={parsedRules} />
+      </div>
     </div>
   );
 };
