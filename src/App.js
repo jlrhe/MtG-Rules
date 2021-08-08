@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import parser from "./parser/parser";
+import Section from "./components/section/section.component";
 
 const App = () => {
   const [rules, setRules] = useState("loading rules...");
@@ -26,7 +27,9 @@ const App = () => {
   return (
     <div className="App">
       <header className="page-header">MtG Rules</header>
-      <p>{parsedRules.toString()}</p>
+      {parsedRules.map(({ id, title, chapters }) => (
+        <Section key={id} id={id} title={title} chapters={chapters} />
+      ))}
     </div>
   );
 };

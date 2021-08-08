@@ -41,7 +41,7 @@ const parser = (rules) => {
     },
     {
       id: "2.",
-      title: "Game Concepts",
+      title: "Parts of a Card",
       chapters: [
         {
           id: "200.",
