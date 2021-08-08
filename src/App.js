@@ -5,9 +5,8 @@ import Chapter from "./components/chapter/chapter.component";
 import TableOfContents from "./components/table-of-contents/table-of-contents.component";
 
 const App = () => {
-  const [rules, setRules] = useState("Loading rules...");
-
-  const [selectedSection, setSelectedSection] = useState("1.");
+  const [rules, setRules] = useState("");
+  const [selectedSection, setSelectedSection] = useState("1."); //separate from selectedChapter to allow dynamic Contents view
   const [selectedChapter, setSelectedChapter] = useState("100.");
   const [selectedChapterData, setSelectedChapterData] = useState({
     id: "100.",
@@ -17,6 +16,7 @@ const App = () => {
   const [rulesUrl, setRulesUrl] = useState(
     "https://thingproxy.freeboard.io/fetch/https://media.wizards.com/2021/downloads/MagicCompRules%2020210419.txt"
   );
+  //placeholder object needed, because I anticipate fetching and parsing the rules to potentially take a few seconds
   const [parsedRules, setParsedRules] = useState([
     {
       id: "1.",
@@ -45,14 +45,12 @@ const App = () => {
         .find((section) => section.id === selectedSection)
         .chapters.find((chapter) => chapter.id === selectedChapter)
     );
-    console.log("setDisplayedRules: ", selectedChapterData);
   }, [parsedRules, selectedChapter, selectedChapterData, selectedSection]);
   return (
     <div className="App">
       <header className="page-header">MtG Rules</header>
       <div className="container">
         <Chapter
-          key={selectedChapterData.id}
           id={selectedChapterData.id}
           title={selectedChapterData.title}
           rules={selectedChapterData.rules}

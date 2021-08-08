@@ -2,7 +2,6 @@ Work in progress...
 
 App for displaying and searching Magic the Gathering rules found in https://media.wizards.com/2021/downloads/MagicCompRules%2020210419.txt
 
-Parser to convert the rules into a .json can be found in /src/parser
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
