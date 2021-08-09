@@ -1,6 +1,18 @@
+App for displaying and searching Magic the Gathering rules found in https://media.wizards.com/2021/downloads/MagicCompRules%2020210419.txt
+
+
 Work in progress...
 
-App for displaying and searching Magic the Gathering rules found in https://media.wizards.com/2021/downloads/MagicCompRules%2020210419.txt
+TODO: 
+  code the parser
+  filter with search
+  event handlers for Contents
+  Usability and styling
+  possibility to show all rules at the same time and search them
+  Extra features (hyperlink when a rule references another, possibility for user to select alternative file by URL)
+  ...
+  ...
+
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

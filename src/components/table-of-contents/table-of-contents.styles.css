@@ -1,4 +1,6 @@
 .table-of-contents {
-  flex: 30%;
+  flex: 22%;
+  padding-left: 2%;
+  padding-right: 2%;
   background-color: #ddd;
 }

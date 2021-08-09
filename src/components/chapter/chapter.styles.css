@@ -1,4 +1,6 @@
 .chapter {
   flex: 70%;
+  padding-left: 2%;
+  padding-right: 2%;
   font-size: 1.5em;
 }

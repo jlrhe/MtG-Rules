@@ -3,7 +3,17 @@ import "./App.css";
 import parser from "./parser/parser";
 import Chapter from "./components/chapter/chapter.component";
 import TableOfContents from "./components/table-of-contents/table-of-contents.component";
+import SearchBox from "./components/search-box/search-box.component";
 
+/*
+TODO: 
+  code the parser
+  filter with search
+  event handlers for Contents
+  Usability and styling
+  possibility to show all rules at the same time and search them
+  Extra features (hyperlink when a rule references another, possibility for user to select alternative file by URL)
+*/
 const App = () => {
   const [rules, setRules] = useState("");
   const [selectedSection, setSelectedSection] = useState("1."); //separate from selectedChapter to allow dynamic Contents view
@@ -49,6 +59,7 @@ const App = () => {
   return (
     <div className="App">
       <header className="page-header">MtG Rules</header>
+      <SearchBox placeholder="Search" />
       <div className="container">
         <Chapter
           id={selectedChapterData.id}
