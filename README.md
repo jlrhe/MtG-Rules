@@ -4,13 +4,19 @@ App for displaying and searching Magic the Gathering rules found in https://medi
 Work in progress...
 
 TODO: 
-  code the parser
-  filter with search
-  event handlers for Contents
+  Code the parser
+  
+  Filter with search
+  
+  Event handlers for Contents
+  
   Usability and styling
-  possibility to show all rules at the same time and search them
+  Possibility to show all rules at the same time and search them
+  
   Extra features (hyperlink when a rule references another, possibility for user to select alternative file by URL)
+  
   ...
+  
   ...
 
 
