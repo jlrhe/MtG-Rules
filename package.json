@@ -2,7 +2,7 @@
   "name": "mtg-rules-front",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jlrhe.github.io/MtG-rules",
+  "homepage": "https://jlrhe.github.io/MtG-rules/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
