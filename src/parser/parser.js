@@ -1,6 +1,91 @@
-const parser = (rules) => {
+const parser = (rawRules) => {
+  //if the rules haven't been fetched yet
+  if (rawRules.length <= 0 || rawRules === undefined) {
+    return [
+      {
+        id: "1.",
+        chapters: [
+          { id: "100.", rules: [{ id: "100.1.", rule: "Loading Rules..." }] },
+        ],
+      },
+    ];
+  }
+  const splittedRules = rawRules.split("\r\n\r\n");
+  //some "wanted" elements start with linebreaks or spaces so let's get rid of those
+  let trimmedRules = splittedRules.map((element) => {
+    let trimmedElement = element.trim();
+    //oddly enough "\r\n" is 3 characters
+    if (element.slice(0, 3) === "\r\n") {
+      trimmedElement = element.slice(3);
+      trimmedElement.trim(); //in case there are spaces after linebreak
+    }
+    return trimmedElement;
+  });
+
+  //Filter out everything that doesn't start with a number
+  let filteredRules = trimmedRules.filter((value) => !isNaN(value[0]));
+
+  //removing the contents listing. There must be a better way to do this - I'll come back to this when time allows.
+  for (let i = 0; i < 9; i++) {
+    filteredRules.shift();
+  }
+
+  //console.log("parser, filtered: ", filteredRules);
+
+  //Let's now build a JSON object from the rules
+  let parsedRules = [];
+
+  //create sections
+  filteredRules.forEach((element) => {
+    //section numbers are of form "x. ". if the rules ever expand to double digit sections this is covered..
+    if (element[2] === " ") {
+      parsedRules.push({
+        id: element.slice(0, 2),
+        title: element.slice(3),
+        chapters: [],
+      });
+    } else if (element[3] === " ") {
+      parsedRules.push({
+        id: element.slice(0, 3),
+        title: element.slice(4),
+        chapters: [],
+      });
+    }
+    //chapter numbers are of form "xxx. "
+    else if (!isNaN(element.slice(0, 3)) && element[4] === " ") {
+      let section = parseInt(element[0]) - 1;
+      parsedRules[section].chapters.push({
+        id: element.slice(0, 4),
+        title: element.slice(5),
+        rules: [],
+      });
+      //rule numbers are of form "xxx.x..." (x is a number).
+    } else if (!isNaN(element.slice(0, 3)) && !isNaN(element[4])) {
+      let section = parseInt(element[0]) - 1;
+      let chapterIndex = parseInt(element.slice(1, 3));
+      if (parsedRules[section].chapters[chapterIndex] !== undefined) {
+        //there are undefineds so this is neccessary, but it also means there's an issue which I'll have to look into at some point
+        let rule = {
+          id: element.slice(0, element.indexOf(" ")),
+          rule: element.slice(element.indexOf(" ") + 1),
+          example: "",
+        };
+        if (rule.rule.indexOf("Example") !== -1) {
+          //if there's an example
+          rule.rule = element.slice(
+            element.indexOf(" ") + 1,
+            element.indexOf("Example")
+          );
+          rule.example = element.slice(element.indexOf("Example"));
+        }
+        parsedRules[section].chapters[chapterIndex].rules.push(rule);
+      }
+    }
+  });
+  //console.log("parser: ", parsedRules);
+  return parsedRules;
   //hard coded for development
-  let parsed = [
+  /*   let parsed = [
     {
       id: "1.",
       title: "Game Concepts",
@@ -79,7 +164,7 @@ const parser = (rules) => {
       ],
     },
   ];
-  return parsed;
+  return parsed; */
 };
 
 export default parser;
