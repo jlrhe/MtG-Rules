@@ -4,8 +4,13 @@ const parser = (rawRules) => {
     return [
       {
         id: "1.",
+        title: "loading...",
         chapters: [
-          { id: "100.", rules: [{ id: "100.1.", rule: "Loading Rules..." }] },
+          {
+            id: "100.",
+            title: "loading...",
+            rules: [{ id: "100.1.", rule: "Loading Rules..." }],
+          },
         ],
       },
     ];
