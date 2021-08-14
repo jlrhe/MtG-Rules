@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/MtG-rules/static/css/main.1c7ee578.chunk.css",
-    "main.js": "/MtG-rules/static/js/main.255649a5.chunk.js",
-    "main.js.map": "/MtG-rules/static/js/main.255649a5.chunk.js.map",
+    "main.js": "/MtG-rules/static/js/main.abda3a99.chunk.js",
+    "main.js.map": "/MtG-rules/static/js/main.abda3a99.chunk.js.map",
     "runtime-main.js": "/MtG-rules/static/js/runtime-main.f880239b.js",
     "runtime-main.js.map": "/MtG-rules/static/js/runtime-main.f880239b.js.map",
     "static/js/2.6dea8801.chunk.js": "/MtG-rules/static/js/2.6dea8801.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.f880239b.js",
     "static/js/2.6dea8801.chunk.js",
     "static/css/main.1c7ee578.chunk.css",
-    "static/js/main.255649a5.chunk.js"
+    "static/js/main.abda3a99.chunk.js"
   ]
 }
