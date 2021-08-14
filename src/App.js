@@ -26,7 +26,7 @@ const App = () => {
   });
   //cors proxy is fine for fetching static data without credentials
   const [rulesUrl, setRulesUrl] = useState(
-    "https://cors-anywhere.herokuapp.com/https://media.wizards.com/2021/downloads/MagicCompRules%2020210419.txt"
+    "https://frozen-dawn-34650.herokuapp.com/media.wizards.com/2021/downloads/MagicCompRules%2020210419.txt"
   );
 
   //placeholder object needed, because I anticipate fetching and parsing the rules to potentially take a few seconds
