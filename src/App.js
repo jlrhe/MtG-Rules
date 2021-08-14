@@ -25,11 +25,10 @@ const App = () => {
     rules: [{ id: "100.1.", rule: "Loading Rules..." }],
   });
   //cors proxy is fine for fetching static data without credentials
-  /* const [rulesUrl, setRulesUrl] = useState(
+  const [rulesUrl, setRulesUrl] = useState(
     "https://thingproxy.freeboard.io/fetch/https://media.wizards.com/2021/downloads/MagicCompRules%2020210419.txt"
-  ); */
-  const rulesUrl =
-    "https://media.wizards.com/2021/downloads/MagicCompRules%2020210419.txt";
+  );
+
   //placeholder object needed, because I anticipate fetching and parsing the rules to potentially take a few seconds
   const [parsedRules, setParsedRules] = useState([
     {
