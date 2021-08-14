@@ -10,7 +10,7 @@ TODO:
   Usability (collapsing sections in toc, next/previous chapter buttons)  
   possibility to show all rules at the same time and search them  
   first styling pass (at least a dark mode)  
-  Extra features (hyperlink when a rule references another, possibility for user to select alternative file by URL)  
+  Extra features (hyperlink when a rule references another, possibility for user to select alternative file by URL or local storage (for when fetch fails))  
   optimize parser and make it more robust so there's maybe a possibility of reading a different txt file...  
 
 
