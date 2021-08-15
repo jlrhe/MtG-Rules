@@ -44,11 +44,18 @@ const App = () => {
       ],
     },
   ]);
-  const SectionChange = (section) => {
-    console.log("set Section: ", selectedSection);
-    setSelectedSection(section);
+  const handleSectionChange = (section) => {
+    console.log("set Section: ", section);
+    setSelectedSection(parseInt(section));
   };
-  const ChapterChange = (chapter) => {
+  const handleChapterChange = (chapter) => {
+    console.log(
+      "chapterChange section argument: ",
+      parseInt(chapter.toString()[0])
+    );
+    if (parseInt(chapter.toString()[0]) !== selectedSection) {
+      handleSectionChange(parseInt(chapter.toString()[0]));
+    }
     console.log("set chapter: ", selectedChapter);
     setSelectedChapter(chapter);
   };
@@ -57,8 +64,8 @@ const App = () => {
     console.log("findchapterSection: ", sectionToFind);
     console.log("findchapter: ", chapterToFind);
     return parsedRules
-      .find((section) => section.id === sectionToFind)
-      .chapters.find((chapter) => chapter.id === chapterToFind);
+      .find((section) => section.id === parseInt(sectionToFind))
+      .chapters.find((chapter) => chapter.id === parseInt(chapterToFind));
   };
   const findSection = (sectionToFind = selectedSection) => {
     return parsedRules.find((section) => section.id === sectionToFind);
@@ -69,6 +76,13 @@ const App = () => {
     } else {
       console.log("next chapter");
       setSelectedChapter(selectedChapter + 1);
+    }
+  };
+  const previousChapter = () => {
+    if (selectedChapter === selectedSection * 100) {
+      console.log("first chapter");
+    } else {
+      setSelectedChapter(selectedChapter - 1);
     }
   };
   const handleFetchError = (response) => {
@@ -102,7 +116,7 @@ const App = () => {
     setSelectedChapterData(findChapter(selectedSection, selectedChapter));
     console.log("parsed rules change: chapter data update");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [parsedRules, selectedSection, selectedChapter]);
+  }, [parsedRules, selectedChapter, selectedSection]);
   return (
     <div className="App">
       <header className="page-header">MtG Rules</header>
@@ -121,8 +135,9 @@ const App = () => {
         <TableOfContents
           parsedRules={parsedRules}
           nextChapter={nextChapter}
-          sectionChange={SectionChange}
-          chapterChange={ChapterChange}
+          previousChapter={previousChapter}
+          sectionChange={handleSectionChange}
+          chapterChange={handleChapterChange}
         />
       </div>
     </div>
