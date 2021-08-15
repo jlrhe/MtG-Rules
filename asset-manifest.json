@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/MtG-Rules/static/css/main.4740001e.chunk.css",
+    "main.css": "/MtG-Rules/static/css/main.7895ca3d.chunk.css",
     "main.js": "/MtG-Rules/static/js/main.8da72618.chunk.js",
     "main.js.map": "/MtG-Rules/static/js/main.8da72618.chunk.js.map",
     "runtime-main.js": "/MtG-Rules/static/js/runtime-main.ab823b02.js",
@@ -8,13 +8,13 @@
     "static/js/2.e29befda.chunk.js": "/MtG-Rules/static/js/2.e29befda.chunk.js",
     "static/js/2.e29befda.chunk.js.map": "/MtG-Rules/static/js/2.e29befda.chunk.js.map",
     "index.html": "/MtG-Rules/index.html",
-    "static/css/main.4740001e.chunk.css.map": "/MtG-Rules/static/css/main.4740001e.chunk.css.map",
+    "static/css/main.7895ca3d.chunk.css.map": "/MtG-Rules/static/css/main.7895ca3d.chunk.css.map",
     "static/js/2.e29befda.chunk.js.LICENSE.txt": "/MtG-Rules/static/js/2.e29befda.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.ab823b02.js",
     "static/js/2.e29befda.chunk.js",
-    "static/css/main.4740001e.chunk.css",
+    "static/css/main.7895ca3d.chunk.css",
     "static/js/main.8da72618.chunk.js"
   ]
 }
