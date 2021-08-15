@@ -1,12 +1,13 @@
 import React from "react";
 import ChapterSelector from "../chapter-selector/chapter-selector.component";
+import "./section.styles.css";
 
 const Section = ({ id, title, chapters, chapterChange }) => {
   const handleChapterChange = (chapter) => {
     chapterChange(chapter);
   };
   return (
-    <section>
+    <section className="section">
       <h3>{id + ". " + title}</h3>
       {chapters.map(({ id, title, rules }) => (
         <ChapterSelector

@@ -15,6 +15,7 @@ import parser from "./parser/parser";
 import Chapter from "./components/chapter/chapter.component";
 import TableOfContents from "./components/table-of-contents/table-of-contents.component";
 import SearchBox from "./components/search-box/search-box.component";
+import NavigationButtons from "./components/navigation-buttons/navigation-buttons";
 
 const App = () => {
   const [rules, setRules] = useState("");
@@ -141,13 +142,24 @@ const App = () => {
       </section>
       <SearchBox placeholder="Search" handleChange={handleSearchEvent} />
       <div className="main-container">
-        <Chapter
-          id={selectedChapterData.id}
-          title={selectedChapterData.title}
-          sectionTitle={findSection(selectedSection).title}
-          rules={selectedChapterData.rules}
-          searchString={searchField}
-        />
+        <div className="main-view">
+          <NavigationButtons
+            nextChapter={nextChapter}
+            previousChapter={previousChapter}
+          ></NavigationButtons>
+          <Chapter
+            id={selectedChapterData.id}
+            title={selectedChapterData.title}
+            sectionTitle={findSection(selectedSection).title}
+            rules={selectedChapterData.rules}
+            searchString={searchField}
+          />
+          <NavigationButtons
+            className="bottom-navigation"
+            nextChapter={nextChapter}
+            previousChapter={previousChapter}
+          ></NavigationButtons>
+        </div>
         <TableOfContents
           parsedRules={parsedRules}
           nextChapter={nextChapter}

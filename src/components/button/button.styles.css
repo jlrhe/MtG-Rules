@@ -1,0 +1,8 @@
+.navigation {
+  width: 120px;
+  height: 30px;
+  margin: 10px 0 10px 0;
+}
+button:disabled {
+  color: rgb(54, 53, 53);
+}
