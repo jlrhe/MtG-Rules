@@ -1,6 +1,7 @@
 import React from "react";
 import ChapterSelector from "../chapter-selector/chapter-selector.component";
 import "./section.styles.css";
+import Collapsible from "react-collapsible";
 
 const Section = ({ id, title, chapters, chapterChange }) => {
   const handleChapterChange = (chapter) => {
@@ -8,15 +9,20 @@ const Section = ({ id, title, chapters, chapterChange }) => {
   };
   return (
     <section className="section">
-      <h3>{id + ". " + title}</h3>
-      {chapters.map(({ id, title, rules }) => (
-        <ChapterSelector
-          chapterChange={handleChapterChange}
-          key={id}
-          id={id}
-          title={title}
-        />
-      ))}
+      <Collapsible
+        className="closed"
+        openedClassName="open"
+        trigger={id + ". " + title}
+      >
+        {chapters.map(({ id, title, rules }) => (
+          <ChapterSelector
+            chapterChange={handleChapterChange}
+            key={id}
+            id={id}
+            title={title}
+          />
+        ))}
+      </Collapsible>
     </section>
   );
 };

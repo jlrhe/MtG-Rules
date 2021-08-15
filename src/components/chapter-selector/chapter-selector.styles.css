@@ -1,5 +1,6 @@
 .chapter-selector {
   height: 2.5em;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
   border-radius: 4px;
+  width: 80%;
 }
