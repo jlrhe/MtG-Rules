@@ -45,33 +45,31 @@ const App = () => {
     },
   ]);
   const SectionChange = (section) => {
+    console.log("set Section: ", selectedSection);
     setSelectedSection(section);
   };
   const ChapterChange = (chapter) => {
+    console.log("set chapter: ", selectedChapter);
     setSelectedChapter(chapter);
   };
-  const findChapter = (
-    sectionToFind = selectedSection,
-    chapterToFind = selectedChapter
-  ) => {
-    parsedRules
+  const findChapter = (sectionToFind, chapterToFind) => {
+    console.log("findchapterdata: ", parsedRules);
+    console.log("findchapterSection: ", sectionToFind);
+    console.log("findchapter: ", chapterToFind);
+    return parsedRules
       .find((section) => section.id === sectionToFind)
       .chapters.find((chapter) => chapter.id === chapterToFind);
   };
   const findSection = (sectionToFind = selectedSection) => {
-    parsedRules.find((section) => section.id === sectionToFind);
+    return parsedRules.find((section) => section.id === sectionToFind);
   };
   const nextChapter = () => {
-    if (findChapter(selectedChapter + 1) === undefined) {
-      if (findSection(selectedSection + 1) === undefined) {
-        //last chapter and section
-        setSelectedSection(1);
-        setSelectedChapter(1);
-      }
-      //last chapter
-      else setSelectedSection(selectedSection + 1);
-      setSelectedChapter(1);
-    } else setSelectedChapter(selectedChapter + 1);
+    if (findChapter(selectedSection, selectedChapter + 1) === undefined) {
+      console.log("last chapter");
+    } else {
+      console.log("next chapter");
+      setSelectedChapter(selectedChapter + 1);
+    }
   };
   const handleFetchError = (response) => {
     if (!response.ok) {
@@ -80,6 +78,7 @@ const App = () => {
       );
       throw Error(response.statusText);
     }
+    return response;
   };
   //fetch rules. Remember to add error handling at some point
   useEffect(() => {
@@ -90,17 +89,20 @@ const App = () => {
       })
       .then((textString) => {
         setRules(textString);
+        console.log("rules set");
       });
   }, [rulesUrl]);
   //parse the rules
   useEffect(() => {
     setParsedRules(parser(rules));
+    console.log("parsing rules");
   }, [rules]);
   //set what is shown in main view. Requires that parsedRules exists and has correct data structure. Remember to add error handling at some point
   useEffect(() => {
-    setSelectedChapterData(findChapter);
+    setSelectedChapterData(findChapter(selectedSection, selectedChapter));
+    console.log("parsed rules change: chapter data update");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [parsedRules, selectedChapter, selectedChapterData, selectedSection]);
+  }, [parsedRules, selectedSection, selectedChapter]);
   return (
     <div className="App">
       <header className="page-header">MtG Rules</header>
