@@ -44,6 +44,7 @@ const App = () => {
       ],
     },
   ]);
+  const [searchField, setSearchField] = useState("");
   const handleSectionChange = (section) => {
     console.log("set Section: ", section);
     setSelectedSection(parseInt(section));
@@ -94,6 +95,10 @@ const App = () => {
     }
     return response;
   };
+  const handleSearchEvent = (e) => {
+    setSearchField(e.target.value);
+    console.log(searchField);
+  };
   //fetch rules. Remember to add error handling at some point
   useEffect(() => {
     fetch(rulesUrl)
@@ -125,12 +130,13 @@ const App = () => {
         means there's no way to cyrrently see any other rules than chapter 100.,
         but please come back tomorrow.
       </section>
-      <SearchBox placeholder="Search" />
+      <SearchBox placeholder="Search" handleChange={handleSearchEvent} />
       <div className="container">
         <Chapter
           id={selectedChapterData.id}
           title={selectedChapterData.title}
           rules={selectedChapterData.rules}
+          searchString={searchField}
         />
         <TableOfContents
           parsedRules={parsedRules}
