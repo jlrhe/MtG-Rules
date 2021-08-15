@@ -1,6 +1,5 @@
 /*
 TODO: 
-  Usability (collapsing sections in toc)
   possibility to show all rules at the same time and search them
   fix parser (chapter 505 -> affects 506-514)
   second styling pass (at least a dark mode)
@@ -100,7 +99,7 @@ const App = () => {
     console.log(searchField);
   };
 
-  //fetch rules. Remember to add error handling at some point
+  //fetch rules.
   useEffect(() => {
     fetch(rulesUrl)
       .then(handleFetchError)
