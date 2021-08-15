@@ -1,14 +1,18 @@
 .search-bar {
-  width: 100%;
+  display: flex;
+  justify-content: center;
   background-color: #888;
 }
 
 .search {
   text-align: center;
+  font-size: 1.2em;
   border: none;
+  border-radius: 3px;
   outline: none;
   padding: 10px;
-  width: 26%;
+  width: 35%;
+  min-width: 200px;
   line-height: 30px;
-  margin: 10px 0px 10px 74%;
+  margin: 10px 0 10px 0;
 }

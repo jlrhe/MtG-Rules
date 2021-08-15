@@ -20,6 +20,7 @@ const App = () => {
   const [rules, setRules] = useState("");
   const [selectedSection, setSelectedSection] = useState(1); //separate from selectedChapter to allow dynamic Contents view
   const [selectedChapter, setSelectedChapter] = useState(100);
+  const [searchField, setSearchField] = useState("");
   const [selectedChapterData, setSelectedChapterData] = useState({
     id: 100,
     title: "loading...",
@@ -44,7 +45,7 @@ const App = () => {
       ],
     },
   ]);
-  const [searchField, setSearchField] = useState("");
+
   const handleSectionChange = (section) => {
     console.log("set Section: ", section);
     setSelectedSection(parseInt(section));
@@ -99,6 +100,7 @@ const App = () => {
     setSearchField(e.target.value);
     console.log(searchField);
   };
+
   //fetch rules. Remember to add error handling at some point
   useEffect(() => {
     fetch(rulesUrl)
@@ -109,6 +111,12 @@ const App = () => {
       .then((textString) => {
         setRules(textString);
         console.log("rules set");
+      })
+      .catch((error) => {
+        alert(
+          "There was an error fetching the rules. \n Please try again when the winds of magic are more favorable."
+        );
+        console.log(error);
       });
   }, [rulesUrl]);
   //parse the rules
@@ -122,19 +130,21 @@ const App = () => {
     console.log("parsed rules change: chapter data update");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [parsedRules, selectedChapter, selectedSection]);
+
   return (
     <div className="App">
       <header className="page-header">MtG Rules</header>
       <section>
-        Under development, search and table of components non-functional. That
-        means there's no way to cyrrently see any other rules than chapter 100.,
-        but please come back tomorrow.
+        Under development. I am aware of the problem with chapters 505-514. I am
+        also aware that the site is ugly and that there are usability issues.
+        I'm working on it.
       </section>
       <SearchBox placeholder="Search" handleChange={handleSearchEvent} />
-      <div className="container">
+      <div className="main-container">
         <Chapter
           id={selectedChapterData.id}
           title={selectedChapterData.title}
+          sectionTitle={findSection(selectedSection).title}
           rules={selectedChapterData.rules}
           searchString={searchField}
         />
