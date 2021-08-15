@@ -18,10 +18,11 @@ import SearchBox from "./components/search-box/search-box.component";
 
 const App = () => {
   const [rules, setRules] = useState("");
-  const [selectedSection, setSelectedSection] = useState("1."); //separate from selectedChapter to allow dynamic Contents view
-  const [selectedChapter, setSelectedChapter] = useState("100.");
+  const [selectedSection, setSelectedSection] = useState(1); //separate from selectedChapter to allow dynamic Contents view
+  const [selectedChapter, setSelectedChapter] = useState(100);
   const [selectedChapterData, setSelectedChapterData] = useState({
-    id: "100.",
+    id: 100,
+    title: "loading...",
     rules: [{ id: "100.1.", rule: "Loading Rules..." }],
   });
   //cors proxy is fine for fetching static data without credentials
@@ -32,26 +33,58 @@ const App = () => {
   //placeholder object needed, because I anticipate fetching and parsing the rules to potentially take a few seconds
   const [parsedRules, setParsedRules] = useState([
     {
-      id: "1.",
+      id: 1,
       title: "loading...",
       chapters: [
         {
-          id: "100.",
+          id: 100,
           title: "loading...",
           rules: [{ id: "100.1.", rule: "Loading Rules..." }],
         },
       ],
     },
   ]);
-  const updateSection = (section) => {
+  const SectionChange = (section) => {
     setSelectedSection(section);
   };
-  const updateChapter = (chapter) => {
+  const ChapterChange = (chapter) => {
     setSelectedChapter(chapter);
+  };
+  const findChapter = (
+    sectionToFind = selectedSection,
+    chapterToFind = selectedChapter
+  ) => {
+    parsedRules
+      .find((section) => section.id === sectionToFind)
+      .chapters.find((chapter) => chapter.id === chapterToFind);
+  };
+  const findSection = (sectionToFind = selectedSection) => {
+    parsedRules.find((section) => section.id === sectionToFind);
+  };
+  const nextChapter = () => {
+    if (findChapter(selectedChapter + 1) === undefined) {
+      if (findSection(selectedSection + 1) === undefined) {
+        //last chapter and section
+        setSelectedSection(1);
+        setSelectedChapter(1);
+      }
+      //last chapter
+      else setSelectedSection(selectedSection + 1);
+      setSelectedChapter(1);
+    } else setSelectedChapter(selectedChapter + 1);
+  };
+  const handleFetchError = (response) => {
+    if (!response.ok) {
+      alert(
+        "There was an error fetching the rules. \n Please try again when the winds of magic are more favorable."
+      );
+      throw Error(response.statusText);
+    }
   };
   //fetch rules. Remember to add error handling at some point
   useEffect(() => {
     fetch(rulesUrl)
+      .then(handleFetchError)
       .then((response) => {
         return response.text();
       })
@@ -65,11 +98,8 @@ const App = () => {
   }, [rules]);
   //set what is shown in main view. Requires that parsedRules exists and has correct data structure. Remember to add error handling at some point
   useEffect(() => {
-    setSelectedChapterData(
-      parsedRules
-        .find((section) => section.id === selectedSection)
-        .chapters.find((chapter) => chapter.id === selectedChapter)
-    );
+    setSelectedChapterData(findChapter);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [parsedRules, selectedChapter, selectedChapterData, selectedSection]);
   return (
     <div className="App">
@@ -88,8 +118,9 @@ const App = () => {
         />
         <TableOfContents
           parsedRules={parsedRules}
-          changeSection={updateSection}
-          changeChapter={updateChapter}
+          nextChapter={nextChapter}
+          sectionChange={SectionChange}
+          chapterChange={ChapterChange}
         />
       </div>
     </div>

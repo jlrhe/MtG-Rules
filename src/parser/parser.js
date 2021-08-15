@@ -3,11 +3,11 @@ const parser = (rawRules) => {
   if (rawRules.length <= 0 || rawRules === undefined) {
     return [
       {
-        id: "1.",
+        id: 1,
         title: "loading...",
         chapters: [
           {
-            id: "100.",
+            id: 100,
             title: "loading...",
             rules: [{ id: "100.1.", rule: "Loading Rules..." }],
           },
@@ -45,13 +45,13 @@ const parser = (rawRules) => {
     //section numbers are of form "x. ". if the rules ever expand to double digit sections this is covered..
     if (element[2] === " ") {
       parsedRules.push({
-        id: element.slice(0, 2),
+        id: parseInt(element.slice(0, 1)),
         title: element.slice(3),
         chapters: [],
       });
     } else if (element[3] === " ") {
       parsedRules.push({
-        id: element.slice(0, 3),
+        id: parseInt(element.slice(0, 2)),
         title: element.slice(4),
         chapters: [],
       });
@@ -60,7 +60,7 @@ const parser = (rawRules) => {
     else if (!isNaN(element.slice(0, 3)) && element[4] === " ") {
       let section = parseInt(element[0]) - 1;
       parsedRules[section].chapters.push({
-        id: element.slice(0, 4),
+        id: parseInt(element.slice(0, 3)),
         title: element.slice(5),
         rules: [],
       });

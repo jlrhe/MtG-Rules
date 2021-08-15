@@ -5,7 +5,7 @@ import "./chapter.styles.css";
 const Chapter = ({ id, title, rules }) => {
   return (
     <section className="chapter">
-      <h3>{id + " " + title}</h3>
+      <h3>{id + ". " + title}</h3>
       {rules.map(({ id, rule, example }) => (
         <Rule key={id} id={id} rule={rule} example={example} />
       ))}
