@@ -4,14 +4,13 @@ App for displaying and searching Magic the Gathering rules found in https://medi
 Work in progress...
 
 TODO:   
-  error handling (when fetch fails at the very least)  
-  event handlers for Contents  
-  filter with search  
-  Usability (collapsing sections in toc, next/previous chapter buttons)  
+  TODO:  
+  Usability (collapsing sections in toc)  
   possibility to show all rules at the same time and search them  
-  first styling pass (at least a dark mode)  
-  Extra features (hyperlink when a rule references another, possibility for user to select alternative file by URL or local storage (for when fetch fails))  
-  optimize parser and make it more robust so there's maybe a possibility of reading a different txt file...  
+  fix parser (chapter 505 -> affects 506-514)  
+  second styling pass (at least a dark mode)  
+  Extra features (hyperlink when a rule references another, possibility for user to select  alternative file by URL)  
+  optimize parser and make it more robust so there's maybe a possibility of reading a different txt file...
 
 
 
