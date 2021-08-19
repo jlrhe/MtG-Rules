@@ -3,7 +3,8 @@ App for displaying and searching Magic the Gathering rules found in https://medi
 
 Work in progress...
 
-TODO:   
+TODO:
+  add a disclaimer required by wizards fan content policy   
   add event handlers for next/previous section  
   disable navigation until rules have been fetched and parsed
   possibility to show all rules at the same time (and thus search them)
