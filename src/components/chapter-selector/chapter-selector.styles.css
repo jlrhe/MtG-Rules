@@ -1,6 +1,12 @@
 .chapter-selector {
-  height: 2.5em;
-  margin-bottom: 3px;
+  height: 2rem;
+  font-weight: bold;
+  color: #0645ad;
   border-radius: 4px;
-  width: 80%;
+  width: 100%;
+  cursor: pointer;
+}
+.chapter-selector:hover {
+  text-decoration: underline;
+  background-color: #ddd;
 }

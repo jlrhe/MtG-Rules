@@ -16,8 +16,11 @@ const NavigationButtons = ({ nextChapter, previousChapter }) => {
         text="&lt;= Chapter"
         handleClick={handlePreviousChapter}
       />
+      {/* 
+      Disabled until I finally get around to writing the event handlers for these...
       <Button type="navigation" text="&lt;=&lt;= Section" />
-      <Button type="navigation" text="Section=&gt;=&gt;" />
+      <Button type="navigation" text="Section=&gt;=&gt;" /> 
+      */}
       <Button
         type="navigation"
         text="Chapter=&gt;"

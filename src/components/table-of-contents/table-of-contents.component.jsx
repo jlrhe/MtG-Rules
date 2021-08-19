@@ -15,7 +15,16 @@ const TableOfContents = ({
   };
   return (
     <div className="table-of-contents">
-      <Collapsible trigger="Contents" classParentString="Contents">
+      <Collapsible
+        trigger="Contents"
+        classParentString="Contents"
+        openedClassName="open"
+        transitionTime="200"
+        open="true"
+      >
+        <span className="material-icons contents-dropdown-icon">
+          arrow_drop_down
+        </span>
         {parsedRules.map(({ id, title, chapters }) => (
           <Section
             key={id}

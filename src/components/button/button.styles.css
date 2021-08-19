@@ -1,7 +1,11 @@
 .navigation {
-  width: 120px;
   height: 30px;
   margin: 10px 0 10px 0;
+  color: #0645ad;
+  cursor: pointer;
+}
+.navigation:hover {
+  text-decoration: underline;
 }
 button:disabled {
   color: rgb(54, 53, 53);

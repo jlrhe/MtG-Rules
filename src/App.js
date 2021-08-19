@@ -132,12 +132,10 @@ const App = () => {
   return (
     <div className="App">
       <header className="page-header">MtG Rules</header>
-      <section>
-        Under development. I am aware of the problem with chapters 505-514. I am
-        also aware that the site is ugly and that there are usability issues.
-        I'm working on it.
-      </section>
-      <SearchBox placeholder="Search" handleChange={handleSearchEvent} />
+      <SearchBox
+        placeholder="Search shown rules by typing here"
+        handleChange={handleSearchEvent}
+      />
       <div className="main-container">
         <div className="main-view">
           <NavigationButtons
