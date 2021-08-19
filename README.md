@@ -7,7 +7,7 @@ TODO:
   add event handlers for nextt/previous section  
   disable navigation until rules have been fetched and parsed
   possibility to show all rules at the same time and search them  
-  fix parser (chapter 505 -> affects 506-514)  
+  ~~fix parser (chapter 505 -> affects 506-514)~~  
   second styling pass (at least a dark mode)  
   Extra features (hyperlink when a rule references another, possibility for user to select  alternative file by URL)  
   optimize parser and make it more robust so there's maybe a possibility of reading a different txt file...
