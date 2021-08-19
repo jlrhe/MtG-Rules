@@ -15,7 +15,9 @@ const parser = (rawRules) => {
       },
     ];
   }
-  const splittedRules = rawRules.split("\r\n\r\n");
+  //there is an additional whitespace between the two linebreaks before 505. This fixes it.
+  const fixedTypoRules = rawRules.replace("\r\n \r\n", "\r\n\r\n");
+  const splittedRules = fixedTypoRules.split("\r\n\r\n");
   //some "wanted" elements start with linebreaks or spaces so let's get rid of those
   let trimmedRules = splittedRules.map((element) => {
     let trimmedElement = element.trim();
