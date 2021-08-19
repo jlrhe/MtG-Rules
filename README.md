@@ -5,6 +5,7 @@ Work in progress...
 
 TODO:   
   add event handlers for nextt/previous section  
+  disable navigation until rules have been fetched and parsed
   possibility to show all rules at the same time and search them  
   fix parser (chapter 505 -> affects 506-514)  
   second styling pass (at least a dark mode)  
