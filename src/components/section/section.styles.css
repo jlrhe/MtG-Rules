@@ -6,7 +6,7 @@
   width: 100%;
 
   text-align: center;
-  font-size: 1.6rem;
+  font-size: 1.25rem;
   font-weight: bold;
   position: relative;
 }
@@ -16,7 +16,7 @@
   padding-bottom: 3px;
   border: 1px solid black;
   border-radius: 5px;
-  margin: 3px;
+  margin: 2px;
 }
 .Collapsible__trigger:hover {
   background-color: #0645ad;
@@ -26,7 +26,7 @@
   top: 0px;
   right: 5px;
   display: block;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
 }
 .Collapsible.open .section-dropdown-icon {
   transform: rotateZ(180deg);

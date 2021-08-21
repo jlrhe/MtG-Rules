@@ -46,46 +46,64 @@ const App = () => {
   ]);
 
   const handleSectionChange = (section) => {
-    console.log("set Section: ", section);
     setSelectedSection(parseInt(section));
   };
+
   const handleChapterChange = (chapter) => {
-    console.log(
-      "chapterChange section argument: ",
-      parseInt(chapter.toString()[0])
-    );
     if (parseInt(chapter.toString()[0]) !== selectedSection) {
       handleSectionChange(parseInt(chapter.toString()[0]));
     }
-    console.log("set chapter: ", selectedChapter);
+    /*     console.log("set chapter: ", selectedChapter); */
     setSelectedChapter(chapter);
   };
+
   const findChapter = (sectionToFind, chapterToFind) => {
-    console.log("findchapterdata: ", parsedRules);
-    console.log("findchapterSection: ", sectionToFind);
-    console.log("findchapter: ", chapterToFind);
     return parsedRules
       .find((section) => section.id === parseInt(sectionToFind))
       .chapters.find((chapter) => chapter.id === parseInt(chapterToFind));
   };
+
   const findSection = (sectionToFind = selectedSection) => {
     return parsedRules.find((section) => section.id === sectionToFind);
   };
+
+  const nextSection = () => {
+    if (findSection(selectedSection + 1) === undefined) {
+      /*       console.log("last section"); */
+    } else {
+      setSelectedSection(selectedSection + 1);
+      setSelectedChapter((selectedSection + 1) * 100);
+      /*       console.log("next section"); */
+    }
+  };
+
+  const previousSection = () => {
+    if (selectedSection === 1) {
+      /*       console.log("first section"); */
+    } else {
+      setSelectedSection(selectedSection - 1);
+      setSelectedChapter((selectedSection - 1) * 100);
+      /*       console.log("previousSection"); */
+    }
+  };
+
   const nextChapter = () => {
     if (findChapter(selectedSection, selectedChapter + 1) === undefined) {
-      console.log("last chapter");
+      /*       console.log("last chapter"); */
     } else {
-      console.log("next chapter");
+      /*       console.log("next chapter"); */
       setSelectedChapter(selectedChapter + 1);
     }
   };
+
   const previousChapter = () => {
     if (selectedChapter === selectedSection * 100) {
-      console.log("first chapter");
+      /*       console.log("first chapter"); */
     } else {
       setSelectedChapter(selectedChapter - 1);
     }
   };
+
   const handleFetchError = (response) => {
     if (!response.ok) {
       alert(
@@ -95,9 +113,10 @@ const App = () => {
     }
     return response;
   };
+
   const handleSearchEvent = (e) => {
     setSearchField(e.target.value);
-    console.log(searchField);
+    /*     console.log(searchField); */
   };
 
   //fetch rules.
@@ -118,21 +137,35 @@ const App = () => {
         console.log(error);
       });
   }, [staticRulesUrl]);
+
   //parse the rules
   useEffect(() => {
     setParsedRules(parser(rules));
-    console.log("parsing rules");
+    /*     console.log("parsing rules"); */
   }, [rules]);
+
   //set what is shown in main view. Requires that parsedRules exists and has correct data structure. Remember to add error handling at some point
+  //if statement is to ensure both section and chapter have updated.
   useEffect(() => {
-    setSelectedChapterData(findChapter(selectedSection, selectedChapter));
-    console.log("parsed rules change: chapter data update");
+    if (
+      selectedSection === Math.floor(selectedChapter / 100) ||
+      selectedSection === Math.floor(selectedChapter / 1000)
+    )
+      //checking for chapters 1000+ in case there are more than 9 chapters in the future
+      setSelectedChapterData(findChapter(selectedSection, selectedChapter));
+    /* console.log(
+      "Chapter data updated. Chapter: ",
+      selectedChapter,
+      ". Section: ",
+      selectedSection
+    ); */
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [parsedRules, selectedChapter, selectedSection]);
+  }, [parsedRules, selectedSection, selectedChapter]);
 
   return (
     <div className="App">
       <header className="page-header">MtG Rules</header>
+
       <SearchBox
         placeholder="Search shown rules by typing here"
         handleChange={handleSearchEvent}
@@ -142,6 +175,8 @@ const App = () => {
           <NavigationButtons
             nextChapter={nextChapter}
             previousChapter={previousChapter}
+            nextSection={nextSection}
+            previousSection={previousSection}
           ></NavigationButtons>
           <Chapter
             id={selectedChapterData.id}
@@ -150,17 +185,18 @@ const App = () => {
             rules={selectedChapterData.rules}
             searchString={searchField}
           />
-          <NavigationButtons
-            className="bottom-navigation"
-            nextChapter={nextChapter}
-            previousChapter={previousChapter}
-          ></NavigationButtons>
         </div>
         <TableOfContents
           parsedRules={parsedRules}
           chapterChange={handleChapterChange}
         />
       </div>
+      <p className="disclaimer">
+        MtG Rules (this website) is unofficial Fan Content permitted under the
+        Fan Content Policy. Not approved/endorsed by Wizards. Portions of the
+        materials used are property of Wizards of the Coast. ©Wizards of the
+        Coast LLC.
+      </p>
     </div>
   );
 };
