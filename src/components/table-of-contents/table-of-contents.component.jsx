@@ -3,16 +3,7 @@ import Collapsible from "react-collapsible";
 import Section from "../section/section.component";
 import "./table-of-contents.styles.css";
 
-const TableOfContents = ({
-  parsedRules,
-  sectionChange,
-  chapterChange,
-  nextChapter,
-  previousChapter,
-}) => {
-  const handleChapterChange = (chapter) => {
-    chapterChange(chapter);
-  };
+const TableOfContents = ({ parsedRules, chapterChange }) => {
   return (
     <div className="table-of-contents">
       <Collapsible
@@ -31,7 +22,7 @@ const TableOfContents = ({
             id={id}
             title={title}
             chapters={chapters}
-            chapterChange={handleChapterChange}
+            chapterChange={chapterChange}
           />
         ))}
       </Collapsible>

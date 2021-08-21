@@ -4,9 +4,6 @@ import "./section.styles.css";
 import Collapsible from "react-collapsible";
 
 const Section = ({ id, title, chapters, chapterChange }) => {
-  const handleChapterChange = (chapter) => {
-    chapterChange(chapter);
-  };
   return (
     <section className="section">
       <Collapsible
@@ -20,7 +17,7 @@ const Section = ({ id, title, chapters, chapterChange }) => {
         </span>
         {chapters.map(({ id, title }) => (
           <ChapterSelector
-            chapterChange={handleChapterChange}
+            chapterChange={chapterChange}
             key={id}
             id={id}
             title={title}

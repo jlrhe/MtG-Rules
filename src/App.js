@@ -24,11 +24,12 @@ const App = () => {
     title: "loading...",
     rules: [{ id: "100.1.", rule: "Loading Rules..." }],
   });
-  //cors proxy is fine for fetching static data without credentials
+  /*cors proxy is fine for fetching static data without credentials, commented out since currently there's no way for the user to change this
   const [rulesUrl, setRulesUrl] = useState(
     "https://frozen-dawn-34650.herokuapp.com/media.wizards.com/2021/downloads/MagicCompRules%2020210419.txt"
-  );
-
+  );*/
+  const staticRulesUrl =
+    "https://frozen-dawn-34650.herokuapp.com/media.wizards.com/2021/downloads/MagicCompRules%2020210419.txt";
   //placeholder object needed, because I anticipate fetching and parsing the rules to potentially take a few seconds
   const [parsedRules, setParsedRules] = useState([
     {
@@ -101,7 +102,7 @@ const App = () => {
 
   //fetch rules.
   useEffect(() => {
-    fetch(rulesUrl)
+    fetch(staticRulesUrl)
       .then(handleFetchError)
       .then((response) => {
         return response.text();
@@ -116,7 +117,7 @@ const App = () => {
         );
         console.log(error);
       });
-  }, [rulesUrl]);
+  }, [staticRulesUrl]);
   //parse the rules
   useEffect(() => {
     setParsedRules(parser(rules));
@@ -157,9 +158,6 @@ const App = () => {
         </div>
         <TableOfContents
           parsedRules={parsedRules}
-          nextChapter={nextChapter}
-          previousChapter={previousChapter}
-          sectionChange={handleSectionChange}
           chapterChange={handleChapterChange}
         />
       </div>
