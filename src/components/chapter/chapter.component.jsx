@@ -7,12 +7,20 @@ const Chapter = ({ id, title, sectionTitle, rules, searchString }) => {
     rule.rule.toLowerCase().includes(searchString.toLowerCase())
   );
   console.log(filteredRules);
-  if (Object.keys(filteredRules).length === 0) {
+  if (id === 600) {
     return (
       <section className="chapter">
         <h2>{sectionTitle}</h2>
         <h3>{id + ". " + title}</h3>
         <p>This chapter has no rules.</p>
+      </section>
+    );
+  } else if (Object.keys(filteredRules).length === 0) {
+    return (
+      <section className="chapter">
+        <h2>{sectionTitle}</h2>
+        <h3>{id + ". " + title}</h3>
+        <p>No rules found</p>
       </section>
     );
   } else {
