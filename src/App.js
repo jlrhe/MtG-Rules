@@ -195,7 +195,14 @@ const App = () => {
         MtG Rules (this website) is unofficial Fan Content permitted under the
         Fan Content Policy. Not approved/endorsed by Wizards. Portions of the
         materials used are property of Wizards of the Coast. ©Wizards of the
-        Coast LLC.
+        Coast LLC. <br /> The rules are from:{" "}
+        <a href="https://media.wizards.com/2021/downloads/MagicCompRules%2020210419.txt">
+          Magic: The Gathering Comprehensive Rules
+        </a>
+        , dated April 22, 2021. If these rules are outdated please let me know.{" "}
+        <br />
+        Source code for this page can be found at{" "}
+        <a href="https://github.com/jlrhe/MtG-Rules">Github</a>
       </p>
     </div>
   );
