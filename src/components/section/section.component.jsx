@@ -18,7 +18,7 @@ const Section = ({ id, title, chapters, chapterChange }) => {
         <span className="material-icons section-dropdown-icon">
           arrow_drop_down
         </span>
-        {chapters.map(({ id, title, rules }) => (
+        {chapters.map(({ id, title }) => (
           <ChapterSelector
             chapterChange={handleChapterChange}
             key={id}

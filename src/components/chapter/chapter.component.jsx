@@ -11,7 +11,13 @@ const Chapter = ({ id, title, sectionTitle, rules, searchString }) => {
       <h2>{sectionTitle}</h2>
       <h3>{id + ". " + title}</h3>
       {filteredRules.map(({ id, rule, example }) => (
-        <Rule key={id} id={id} rule={rule} example={example} />
+        <Rule
+          key={id}
+          id={id}
+          rule={rule}
+          example={example}
+          searchString={searchString}
+        />
       ))}
     </section>
   );

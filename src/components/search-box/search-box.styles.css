@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   background-color: #888;
+  height: 60px;
 }
 
 .search {
