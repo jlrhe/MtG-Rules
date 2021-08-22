@@ -3,7 +3,7 @@ import Rule from "../rule/rule.component";
 import "./chapter.styles.css";
 
 const Chapter = ({ id, title, sectionTitle, rules, searchString }) => {
-  const filteredRules = rules.filter((rule) =>
+  let filteredRules = rules.filter((rule) =>
     rule.rule.toLowerCase().includes(searchString.toLowerCase())
   );
   console.log(filteredRules);
