@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Rule from "../rule/rule.component";
 import "./chapter.styles.css";
 
 const Chapter = ({ id, title, sectionTitle, rules, searchString }) => {
-  let filteredRules = rules.filter((rule) =>
+  const [filteredRules, setFilteredRules] = useState(rules);
+
+  useEffect(() => {
+    setFilteredRules(
+      rules.filter((rule) =>
+        rule.rule.toLowerCase().includes(searchString.toLowerCase())
+      )
+    );
+  }, [rules, searchString]);
+
+  /* rules.filter((rule) =>
     rule.rule.toLowerCase().includes(searchString.toLowerCase())
   );
-  console.log(filteredRules);
+  console.log(filteredRules); */
   if (id === 600) {
     return (
       <section className="chapter">
