@@ -7,11 +7,11 @@ TODO:
   ~~add a disclaimer required by wizards fan content policy~~  
   ~~add event handlers for next/previous section~~  
   disable navigation until rules have been fetched and parsed  
-  possibility to show all rules at the same time (and thus search them)
-  add rulenumbering to be part of the rules text (or something) so that the user can search by a rules number (I didn't think this was neccessary, but I have been told of a compelling use case for this)
+  possibility to show all rules at the same time (and thus search them)  
+  add rulenumbering to be part of the rules text (or something) so that the user can search by a rules number (I didn't think this was neccessary, but I have been told of a compelling use case for this)  
   ~~fix parser (chapter 505 -> affects 506-514)~~  
   Extra features (hyperlink when a rule references another, possibility for user to select alternative file by URL)  
-  optimize parser and make it more robust so there's maybe a possibility of reading a different txt file...
+  optimize parser and make it more robust so there's maybe a possibility of reading a different txt file...  
 
 
 
