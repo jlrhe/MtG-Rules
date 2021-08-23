@@ -11,7 +11,6 @@ const TableOfContents = ({ parsedRules, chapterChange }) => {
         classParentString="Contents"
         openedClassName="open"
         transitionTime="200"
-        open="true"
       >
         <span className="material-icons contents-dropdown-icon">
           arrow_drop_down
